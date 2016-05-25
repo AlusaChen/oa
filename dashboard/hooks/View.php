@@ -39,7 +39,7 @@ class View
         $class_file = rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$class.'_'.$type.'.php';
         if(file_exists($class_file))
         {
-            $class_view = $class.DIRECTORY_SEPARATOR.'_'.$type;
+            $class_view = $class.'_'.$type;
             $this->CI->load->view($class_view);
         }
         $method_file = rtrim($path, DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$class.DIRECTORY_SEPARATOR.$method.'_'.$type.'.php';
@@ -50,17 +50,21 @@ class View
         }
     }
 
-    //头
+    //head + menu
     public function show_head()
     {
         if($this->CI->input->is_ajax_request()) return;
         $this->CI->load->view('layout/head_begin');
         $this->load_module_file('css');
         $this->CI->load->view('layout/head_end');
+
+        $this->CI->load->view('layout/menu_begin');
+        $this->load_module_file('menu');
+        $this->CI->load->view('layout/menu_end');
     }
 
 
-    //尾
+    //foot
     public function show_foot()
     {
         if($this->CI->input->is_ajax_request()) return;
