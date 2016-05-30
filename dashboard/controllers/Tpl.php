@@ -23,4 +23,9 @@ class Tpl extends CI_Controller {
     {
         $this->load->view('tpl/widgets');
     }
+
+    public function demo()
+    {
+        $this->load->view('tpl/demo');
+    }
 }

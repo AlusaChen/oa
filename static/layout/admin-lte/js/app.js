@@ -1,4 +1,5 @@
-require(['jquery', 'bootstrap'], function(){
+require(['jquery', 'bootstrap', 'icheck', 'select2', 'daterangepicker', 'bootstrap-timepicker', 'bootstrap-datepicker'], function(){
+
     /*! AdminLTE app.js
      * ================
      * Main JS application file for AdminLTE v2. This file
@@ -757,5 +758,131 @@ require(['jquery', 'bootstrap'], function(){
             });
         };
     }(jQuery));
+
+
+
+    //
+    // 各种初始化
+    //
+
+
+    /**
+     * icheck 初始化
+     */
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+        checkboxClass: 'icheckbox_minimal-red',
+        radioClass: 'iradio_minimal-red'
+    });
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
+    });
+
+    /**
+     * select2 初始化
+     */
+    $(".select2").select2();
+
+    /**
+     * timepicker 初始化
+     */
+    $(".timepicker").timepicker({
+        showInputs: false
+    });
+
+
+
+    //初始化moment
+    var moment = require('moment');
+    moment.locale('zh-cn');
+
+    /**
+     * datepicker 初始化
+     */
+    $('.datepicker').datepicker({
+        autoclose: true
+    });
+
+    //Date range picker
+
+    $('.daterange').daterangepicker({
+            format: 'YYYY-MM-DD',
+            locale:{
+                applyLabel: '确认',
+                cancelLabel: '取消',
+                fromLabel: '从',
+                toLabel: '到',
+                customRangeLabel: '高级'
+            }
+        },
+        function (start, end) {
+            $(this.element).parents('div.datarange-box').find('input.daterange-start-value').val(start.format('YYYY-MM-DD'))
+            $(this.element).parents('div.datarange-box').find('input.daterange-end-value').val(end.format('YYYY-MM-DD'))
+        }
+    );
+
+
+
+    //Date range picker with time picker
+    $('.daterangetime').daterangepicker({
+            timePicker12Hour: false,
+            timePicker: true,
+            timePickerIncrement: 30,
+            timePickerSeconds: true,
+            format: 'YYYY-MM-DD HH:mm:ss',
+            locale:{
+                applyLabel: '确认',
+                cancelLabel: '取消',
+                fromLabel: '从',
+                toLabel: '到',
+                customRangeLabel: '高级'
+            }
+        },
+        function (start, end) {
+            $(this.element).parents('div.datarange-box').find('input.daterange-start-value').val(start.format('YYYY-MM-DD HH:mm:ss'))
+            $(this.element).parents('div.datarange-box').find('input.daterange-end-value').val(end.format('YYYY-MM-DD HH:mm:ss'))
+        }
+    );
+
+    //Date range as a button
+    $('.daterange-btn').daterangepicker({
+            ranges: {
+                '今天': [moment(), moment()],
+                '昨天': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                '一周': [moment().subtract(6, 'days'), moment()],
+                '30天': [moment().subtract(29, 'days'), moment()],
+                '本月': [moment().startOf('month'), moment().endOf('month')],
+                '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment(),
+            format: 'YYYY-MM-DD',
+            locale:{
+                applyLabel: '确认',
+                cancelLabel: '取消',
+                fromLabel: '从',
+                toLabel: '到',
+                customRangeLabel: '高级'
+            }
+        },
+        function (start, end) {
+            //$('.daterange-btn span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+            $(this.element).html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+            $(this.element).parents('div.datarange-box').find('input.daterange-start-value').val(start.format('YYYY-MM-DD'))
+            $(this.element).parents('div.datarange-box').find('input.daterange-end-value').val(end.format('YYYY-MM-DD'))
+        }
+    );
+
+    //Date picker
+    $('#datepicker').datepicker({
+        autoclose: true
+    });
 
 });

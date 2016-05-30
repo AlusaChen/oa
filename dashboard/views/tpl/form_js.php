@@ -59,4 +59,3 @@
     });
 </script>
 
-<link rel="stylesheet" href="/layout/admin-lte/css/plugin.css">

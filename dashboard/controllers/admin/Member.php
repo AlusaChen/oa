@@ -13,4 +13,11 @@ class Member extends MY_Controller
             echo $item->username.'<br>';
         }
     }
+
+    public function add()
+    {
+        $this->load->view('admin/member_add');
+    }
+
+
 }

@@ -1,6 +1,6 @@
 require.config({
     baseUrl: "/js/lib",
-    urlArgs: 'v=201605257',
+    urlArgs: 'v=2016053010',
     paths: {
         jquery: "jquery/jquery",
         "jquery.ui": "jquery-ui/jquery-ui.min",
@@ -9,11 +9,11 @@ require.config({
         "datatables.bootstrap":"datatables/dataTables.bootstrap.min",
         select2: "select2/select2.min",
 
-        moment:"daterangepicker/moment.min",
+        //moment:"daterangepicker/moment.min",
         daterangepicker:"daterangepicker/daterangepicker",
 
         //新版moment
-        //moment:"moment/moment.min",
+        moment:"moment/moment-locales.min",
 
         "bootstrap-datepicker":"datepicker/bootstrap-datepicker",
         "bootstrap-colorpicker":"colorpicker/bootstrap-colorpicker.min",
@@ -23,7 +23,7 @@ require.config({
     shim: {
         bootstrap: ["jquery"],
         datatables: ["css!/js/lib/datatables/dataTables.bootstrap.css"],
-        select2:["css!/js/lib/select2/select2.min.css"],
+        select2:["css!/js/lib/select2/select2.min.css", "css!/layout/admin-lte/css/hook.css"],
         icheck:["css!/js/lib/icheck/all.css"],
         'bootstrap-datepicker':["css!/js/lib/datepicker/datepicker3.css"],
         'bootstrap-colorpicker':["css!/js/lib/colorpicker/bootstrap-colorpicker.min.css"],

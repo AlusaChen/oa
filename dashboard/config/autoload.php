@@ -90,7 +90,7 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 $autoload['helper'] = [
-    'db'
+    'db', 'aform'
 ];
 
 /*

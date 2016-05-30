@@ -16,4 +16,4 @@
 <!-- jQuery 2.2.0 -->
 <script src="/js/require.js"></script>
 <script src="/js/config.js"></script>
-<script src="/layout/admin-lte/js/app.js"></script>
+<script src="/layout/admin-lte/js/app.js?v=123"></script>

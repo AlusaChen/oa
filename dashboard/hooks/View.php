@@ -53,6 +53,7 @@ class View
     //head + menu
     public function show_head()
     {
+        if($this->CI->router->class == 'test') return;
         if($this->CI->input->is_ajax_request()) return;
         $this->CI->load->view('layout/head_begin');
         $this->load_module_file('css');
@@ -67,6 +68,7 @@ class View
     //foot
     public function show_foot()
     {
+        if($this->CI->router->class == 'test') return;
         if($this->CI->input->is_ajax_request()) return;
 
         $this->CI->load->view('layout/foot_begin');
