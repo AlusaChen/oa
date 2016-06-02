@@ -18,11 +18,9 @@ if ( ! function_exists('db_master'))
     {
         $CI =& get_instance();
         if(!property_exists($CI, 'dbs')) $CI->dbs = [];
-        if(!array_key_exists('master', $CI->dbs))
-        {
-            $CI->dbs['master'] = $CI->load->database($type, TRUE);
-        }
-        return $CI->dbs['master'];
+        if(!array_key_exists($type, $CI->dbs)) $CI->dbs[$type] = [];
+        if(!array_key_exists('master', $CI->dbs[$type])) $CI->dbs[$type]['master'] = $CI->load->database($type, TRUE);
+        return $CI->dbs[$type]['master'];
     }
 
 }
@@ -37,7 +35,8 @@ if ( ! function_exists('db_slave'))
     {
         $CI =& get_instance();
         if(!property_exists($CI, 'dbs')) $CI->dbs = [];
-        if(!array_key_exists('slave', $CI->dbs))
+        if(!array_key_exists($type, $CI->dbs)) $CI->dbs[$type] = [];
+        if(!array_key_exists('slave', $CI->dbs[$type]))
         {
             $all_slaves = config_item('db_slaves');
             if(!$all_slaves || !array_key_exists($type, $all_slaves))
@@ -48,8 +47,8 @@ if ( ! function_exists('db_slave'))
 
             $max = count($db_slaves) - 1;
             $selected = mt_rand(0, $max); //randomly select a database
-            $CI->dbs['slave'] = $CI->load->database($db_slaves[$selected], TRUE);
+            $CI->dbs[$type]['slave'] = $CI->load->database($db_slaves[$selected], TRUE);
         }
-        return $CI->dbs['slave'];
+        return $CI->dbs[$type]['slave'];
     }
 }

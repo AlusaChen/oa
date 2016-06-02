@@ -33,12 +33,17 @@ class MY_Profiler extends CI_Profiler
             }
             else if($name == 'dbs')
             {
-                foreach($cobject as $k => $item)
+                foreach($cobject as $db_type => $items)
                 {
-                    if ($item instanceof CI_DB)
+                    foreach($items as $k => $item)
                     {
-                        $dbs[get_class($this->CI).':'.$k] = $item;
+                        if ($item instanceof CI_DB)
+                        {
+                            $dbs[get_class($this->CI).':'.$k] = $item;
+                        }
                     }
+
+
                 }
             }
         }
